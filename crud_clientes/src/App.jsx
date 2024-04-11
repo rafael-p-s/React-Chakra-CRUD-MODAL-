@@ -35,13 +35,26 @@ function App() {
   }, [setData]);
 
   //Função para DELETAR:
+  // const handleRemove = (email) => {
+  //   const newArray = data.filter((item) => item.email !== email); // pega o data e faz um filtro para verificar se tem o email escolhido.
+
+  //   setData(newArray); // Caso for excluido vai recarregar os itens em tela
+
+  //   localStorage.setItem("cad_cliente", JSON.stringify(newArray));
+  // };
+
   const handleRemove = (email) => {
-    const newArray = data.filter((item) => item.email !== email); // pega o data e faz um filtro para verificar se tem o email escolhido.
-
-    setData(newArray); // Caso for excluido vai recarregar os itens em tela
-
-    localStorage.setItem("cad_cliente", JSON.stringify(newArray));
+    // Primeiro, perguntamos ao usuário para confirmar a exclusão
+    const isConfirmed = window.confirm("Deseja realmente excluir?"); // pega o data e faz um filtro para verificar se tem o email escolhido.
+  
+    // Se o usuário confirmou, então prosseguimos com a exclusão
+    if (isConfirmed) {
+      const newArray = data.filter((item) => item.email !== email);
+      setData(newArray); // Atualize o estado com o novo array
+      localStorage.setItem("cad_cliente", JSON.stringify(newArray)); // Atualize o localStorage
+    }
   };
+  
 
   return (
     <>
